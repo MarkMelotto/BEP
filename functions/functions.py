@@ -73,7 +73,7 @@ def calculate_maximum_percentage_water(T):
     return max_percentage
 
 # now calculate absorp coeff with the temperature
-def absorption_coefficient_air_composition_low_high_humidity_at_T(mu_N2, mu_O2, mu_CO2, mu_H20,T):
+def absorption_coefficient_air_composition_low_high_humidity_at_T(mu_N2, mu_O2, mu_CO2, mu_H20, T):
     N2 = 0.78
     O2 = 0.209
     CO2 = 0.0003
