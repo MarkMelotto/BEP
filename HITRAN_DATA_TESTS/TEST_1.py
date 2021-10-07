@@ -1,4 +1,6 @@
 from functions.functions import *
+from functions.HITRAN_functions import *
+from functions.HITRAN_data import *
 
 # all absorption coefficients are wavenumbers per cm: KNa per cm
 mu_water = HITRAN_get_mu_water()

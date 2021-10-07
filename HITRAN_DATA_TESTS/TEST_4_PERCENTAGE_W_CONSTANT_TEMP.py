@@ -1,4 +1,6 @@
 from functions.functions import *
+from functions.HITRAN_functions import *
+from functions.HITRAN_data import *
 import numpy as np
 
 # all absorption coefficients are wavenumbers per cm: KNa per cm
