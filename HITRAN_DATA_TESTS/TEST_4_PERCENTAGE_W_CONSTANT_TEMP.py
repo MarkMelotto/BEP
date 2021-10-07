@@ -2,13 +2,13 @@ from functions.functions import *
 import numpy as np
 
 # all absorption coefficients are wavenumbers per cm: KNa per cm
-mu_water = get_mu_water()
+mu_water = HITRAN_get_mu_water()
 
-mu_nitrogen = get_mu_nitrogen()
+mu_nitrogen = HITRAN_get_mu_nitrogen()
 
-mu_oxygen = get_mu_oxygen()
+mu_oxygen = HITRAN_get_mu_oxygen()
 
-mu_carbon_mono_oxide = get_mu_carbon_mono_oxide()
+mu_carbon_mono_oxide = HITRAN_get_mu_carbon_mono_oxide()
 
 # a dict of wavenumbers to make it easier to look at all the data in the same loop plus the lowest and highest intensity
 # all at T = 20
