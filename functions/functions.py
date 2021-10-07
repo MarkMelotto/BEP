@@ -24,6 +24,10 @@ def HITRAN_get_mu_carbon_mono_oxide():
 def WIKI_get_absorption_coeff_water():
     return {718e-9:1, 810e-9:1.5, 1.13e-6:20, 1.38e-6:30, 1.88e-6:900, 2.68e-6:8000, 6.3e-6:15000}
 
+def WIKI_available_wavelengths():
+    return [718e-9, 810e-9, 1.13e-6, 1.38e-6, 1.88e-6, 2.68e-6, 6.3e-6]
+
+
 '''basic functions'''
 # function to measure the intensity left over after a certain path length
 def measure_intensity(start_intensity, atten_coef, length):
@@ -43,7 +47,6 @@ def calculate_water_saturation(T):
 # returns air density at kg/m3
 def calculate_air_density(T):
     return 1.44685243e-05 * T ** 2 - 4.72481940e-03 * T + 1.29255728
-
 
 # returns decimal percentage of the max percentage water in the air at certain temperature T
 # accurate between -20 and 60 C
