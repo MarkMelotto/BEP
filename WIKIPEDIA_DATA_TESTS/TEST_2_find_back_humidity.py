@@ -19,7 +19,7 @@ path_length = 0.1  # meter
 
 # lists for the plot
 list_real_humidity = []
-list_calculated_humidity= []
+list_calculated_humidity = []
 list_wavelengths = WIKI_available_wavelengths()
 
 for wavelength, max_intensity_loss in dict_wavelengths.items():
@@ -32,7 +32,7 @@ for wavelength, max_intensity_loss in dict_wavelengths.items():
     humidity = WIKI_find_humidity_from_intensity(start_intensity, random_intensity, path_length,
                                                  absorption_coefficient_water[wavelength])
 
-    list_calculated_humidity.append(humidity)
+    list_calculated_humidity.append(humidity) # for a plot
 
     print(f"\n"
           f"for wavelength: {wavelength * 1e9:.2f} nm over a path length of {path_length * 100} cm:\n"
