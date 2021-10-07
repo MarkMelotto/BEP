@@ -19,9 +19,9 @@ for wavenumber in list_of_wavenumbers:
     current_wavelength = wavenumber_to_wavelength(wavenumber)
     T = 20
     low_humidity_absorption_coefficient, high_humidity_absorption_coefficient = \
-        absorption_coefficient_air_composition_low_high_humidity_at_T(mu_nitrogen[wavenumber], mu_oxygen[wavenumber],
-                                                                 mu_carbon_mono_oxide[wavenumber], mu_water[wavenumber],
-                                                                      T)
+        HITRAN_absorption_coefficient_air_composition_low_high_humidity_at_T(mu_nitrogen[wavenumber], mu_oxygen[wavenumber],
+                                                                             mu_carbon_mono_oxide[wavenumber], mu_water[wavenumber],
+                                                                             T)
 
     absorbed_light_low_humidity_intensity = measure_intensity(start_laser_intensity, low_humidity_absorption_coefficient,
                                                     path_length_laser)

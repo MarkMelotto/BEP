@@ -65,7 +65,7 @@ def absorption_coefficient_air_composition_low_high_humidity(mu_N2, mu_O2, mu_CO
 
 
 '''functions for the HITRAN data base'''
-def find_humidity_from_intensity(start_intensity, received_intensity, path_length, mu_N2, mu_O2, mu_CO2, mu_H2O):
+def HITRAN_find_humidity_from_intensity(start_intensity, received_intensity, path_length, mu_N2, mu_O2, mu_CO2, mu_H2O):
     N2 = 0.78
     O2 = 0.209
     CO2 = 0.0003
@@ -81,7 +81,7 @@ def find_humidity_from_intensity(start_intensity, received_intensity, path_lengt
 
 
 # now calculate absorption coefficient with the temperature
-def absorption_coefficient_air_composition_low_high_humidity_at_T(mu_N2, mu_O2, mu_CO2, mu_H20, T):
+def HITRAN_absorption_coefficient_air_composition_low_high_humidity_at_T(mu_N2, mu_O2, mu_CO2, mu_H20, T):
     N2 = 0.78
     O2 = 0.209
     CO2 = 0.0003
@@ -92,8 +92,8 @@ def absorption_coefficient_air_composition_low_high_humidity_at_T(mu_N2, mu_O2, 
     return low_humidity, high_humidity
 
 
-def find_humidity_from_intensity_at_T(start_intensity, received_intensity, path_length, mu_N2, mu_O2, mu_CO2, mu_H2O,
-                                      T):
+def HITRAN_find_humidity_from_intensity_at_T(start_intensity, received_intensity, path_length,
+                                             mu_N2, mu_O2, mu_CO2, mu_H2O, T):
     N2 = 0.78
     O2 = 0.209
     CO2 = 0.0003

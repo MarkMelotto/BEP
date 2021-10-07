@@ -32,10 +32,10 @@ for wavenumber,intensity in dict_of_wavenumbers.items():
 
     random_intensity = ((high_intensity-low_intensity)*REAL_humidity/100) + low_intensity
 
-    humidity = find_humidity_from_intensity_at_T(start_laser_intensity, random_intensity, path_length_laser,
-                                            mu_nitrogen[wavenumber], mu_oxygen[wavenumber],
-                                            mu_carbon_mono_oxide[wavenumber], mu_water[wavenumber], T
-                                            )
+    humidity = HITRAN_find_humidity_from_intensity_at_T(start_laser_intensity, random_intensity, path_length_laser,
+                                                        mu_nitrogen[wavenumber], mu_oxygen[wavenumber],
+                                                        mu_carbon_mono_oxide[wavenumber], mu_water[wavenumber], T
+                                                        )
 
     print(f"\n"
           f"for wavelength: {current_wavelength * 1e9:.2f} nm at T = {T}:\n"
