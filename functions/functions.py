@@ -1,7 +1,7 @@
 import numpy as np
 
 
-# some data on the absorption coefficients on molecules all in KNa/cm:
+'''some data on the absorption coefficients on molecules all in KNa/cm:'''
 def HITRAN_get_mu_water():
     return {5344: 0.55, 7210: 0.4, 7400: 0.37, 8812: 0.03, 10700: 0.0129, 10638: 0.0006}
 
@@ -21,51 +21,21 @@ def HITRAN_get_mu_carbon_mono_oxide():
     return {5344: 0.0209, 7210: 3.36e-3, 7400: 3.11e-3, 8812: 2.490e-3, 10700: 3.86e-3, 10638: 4.11e-3}
 
 
+'''basic functions'''
 # function to measure the intensity left over after a certain path length
 def measure_intensity(start_intensity, atten_coef, length):
     return start_intensity * np.exp(-atten_coef * length)
-
-
-# returns lowest and highest possible absorption coefficients for both air compositions
-def absorption_coefficient_air_composition_low_high_humidity(mu_N2, mu_O2, mu_CO2, mu_H20):
-    N2 = 0.78
-    O2 = 0.209
-    CO2 = 0.0003
-    low_H2O = 0
-    high_H2O = 0.03
-    low_humidity = mu_CO2 * CO2 + mu_O2 * O2 + N2 * mu_N2 + mu_H20 * low_H2O
-    high_humidity = mu_CO2 * CO2 + mu_O2 * O2 + N2 * mu_N2 + mu_H20 * high_H2O
-    return low_humidity, high_humidity
-
 
 # returns the difference in dB between start signal and end signal
 def intensity_in_dB(start_intensity, current_intensity):
     return 10 * np.log10(current_intensity / start_intensity)
 
-
 def wavenumber_to_wavelength(WN):
     return 0.01 / (WN)
-
-
-def find_humidity_from_intensity(start_intensity, received_intensity, path_length, mu_N2, mu_O2, mu_CO2, mu_H2O):
-    N2 = 0.78
-    O2 = 0.209
-    CO2 = 0.0003
-    high_H2O = 0.03
-
-    mu_known = mu_N2 * N2 + mu_CO2 * CO2 + mu_O2 * O2
-
-    concentration_H2O = -(((np.log(received_intensity / start_intensity)) / path_length) + mu_known) / mu_H2O
-
-    percentage_humidity = (concentration_H2O / high_H2O) * 100
-
-    return percentage_humidity
-
 
 # returns water saturation at g/m3
 def calculate_water_saturation(T):
     return np.exp(1.56065404) * np.exp(6.90219321e-02 * T) * np.exp(-2.38543241e-04 * T ** 2)
-
 
 # returns air density at kg/m3
 def calculate_air_density(T):
@@ -81,6 +51,33 @@ def calculate_maximum_percentage_water(T):
     max_percentage = (water_saturation / (air_density * 1000))  # decimal percentage
 
     return max_percentage
+
+# returns lowest and highest possible absorption coefficients for both air compositions
+def absorption_coefficient_air_composition_low_high_humidity(mu_N2, mu_O2, mu_CO2, mu_H20):
+    N2 = 0.78
+    O2 = 0.209
+    CO2 = 0.0003
+    low_H2O = 0
+    high_H2O = 0.03
+    low_humidity = mu_CO2 * CO2 + mu_O2 * O2 + N2 * mu_N2 + mu_H20 * low_H2O
+    high_humidity = mu_CO2 * CO2 + mu_O2 * O2 + N2 * mu_N2 + mu_H20 * high_H2O
+    return low_humidity, high_humidity
+
+
+'''functions for the HITRAN data base'''
+def find_humidity_from_intensity(start_intensity, received_intensity, path_length, mu_N2, mu_O2, mu_CO2, mu_H2O):
+    N2 = 0.78
+    O2 = 0.209
+    CO2 = 0.0003
+    high_H2O = 0.03
+
+    mu_known = mu_N2 * N2 + mu_CO2 * CO2 + mu_O2 * O2
+
+    concentration_H2O = -(((np.log(received_intensity / start_intensity)) / path_length) + mu_known) / mu_H2O
+
+    percentage_humidity = (concentration_H2O / high_H2O) * 100
+
+    return percentage_humidity
 
 
 # now calculate absorption coefficient with the temperature
