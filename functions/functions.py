@@ -1,10 +1,9 @@
 import numpy as np
 
 
-'''some data on the absorption coefficients on molecules all in KNa/cm:'''
+'''some HITRAN data on the absorption coefficients on molecules all in 1/cm:'''
 def HITRAN_get_mu_water():
     return {5344: 0.55, 7210: 0.4, 7400: 0.37, 8812: 0.03, 10700: 0.0129, 10638: 0.0006}
-
 
 # def get_mu_nitrogen():
 #     return {5344: -0.0275, 7210: -0.17, 7400: -0.14, 8812: -0.112, 10700: 0, 10638: 0}
@@ -20,6 +19,10 @@ def HITRAN_get_mu_oxygen():
 def HITRAN_get_mu_carbon_mono_oxide():
     return {5344: 0.0209, 7210: 3.36e-3, 7400: 3.11e-3, 8812: 2.490e-3, 10700: 3.86e-3, 10638: 4.11e-3}
 
+
+'''DATA wikipedia in 1/m'''
+def WIKI_get_absorption_coeff_water():
+    return {718e-9:1, 810e-9:1.5, 1.13e-6:20, 1.38e-6:30, 1.88e-6:900, 2.68e-6:8000, 6.3e-6:15000}
 
 '''basic functions'''
 # function to measure the intensity left over after a certain path length
