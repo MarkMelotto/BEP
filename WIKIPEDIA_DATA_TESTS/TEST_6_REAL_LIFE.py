@@ -25,6 +25,9 @@ for wavelength in list_wavelengths:
 
     random_intensity = ((max_intensity_loss - start_intensity) * REAL_humidity / 100) + start_intensity
 
+    # to make this work as a real life situation, we cannot measure at 10 decimals
+    random_intensity = round(random_intensity, 5)
+
     humidity = WIKI_find_humidity_from_intensity_at_T(start_intensity, random_intensity, path_length,
                                                  absorption_coefficient_water[wavelength], T)
 
