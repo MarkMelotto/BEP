@@ -10,16 +10,17 @@ start_intensity = 0.100  # Watt/cm2
 path_length = 0.1  # meter
 
 # decimals rounded
-decimal_round = 5
+decimal_round = 4
 
 # number of iterations
 N = 10000
+T = 10
 
 error_list = []
 
 for i in range(N):
     REAL_humidity = np.random.randint(0, 100)  # %
-    T = np.random.randint(-20, 60)
+    # T = np.random.randint(-20, 60)
 
     concentration_water = WIKI_absorption_coefficient_air_composition_high_humidity_at_T(absorption_coefficient_water[wavelength], T)
 
