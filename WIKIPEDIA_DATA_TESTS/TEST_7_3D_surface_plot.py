@@ -3,7 +3,8 @@ from functions.WIKI_data import *
 from functions.functions import *
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
@@ -39,11 +40,20 @@ print(f"list_intensity_loss = \n{list_intensity_loss}\n")
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.plot_wireframe(list_humidity, list_path_length, list_intensity_loss, rstride=10, cstride=10)
-# ax.grid()
+
+surf = ax.plot_surface(list_humidity, list_path_length, list_intensity_loss, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+
+# Customize the z axis.
+ax.set_zlim(0.07, 0.1)
+ax.zaxis.set_major_locator(LinearLocator(10))
+ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+
+# Add a color bar which maps values to colors.
+fig.colorbar(surf, shrink=0.5, aspect=5, label='intensity W/cm2')
+
 plt.title('Intensity at T = 20')
 plt.ylabel('Path length (m)')
-# ax.xlim((0,100))
 plt.xlabel('Percentage Humidity')
 
 plt.show()
