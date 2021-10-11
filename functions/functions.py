@@ -43,7 +43,7 @@ def make_2d_path_length_list(x, y):
     path_length = np.zeros((x,y))
     for i in range(x):
         for j in range(y):
-            path_length[i,j] = j/(y-1)
+            path_length[i,j] = i/(y-1)
 
     return path_length
 
