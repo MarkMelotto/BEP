@@ -37,3 +37,11 @@ def WIKI_find_humidity_from_intensity_at_T(start_intensity, received_intensity, 
 
     return percentage_humidity
 
+def WIKI_find_intensity_loss(start_intensity, path_length, mu_H2O, humidity, T):
+
+    humidity = humidity/100
+
+    max_percentage_water = calculate_maximum_percentage_water(T)
+    attenuation_coefficient = mu_H2O*humidity*max_percentage_water
+    intensity = measure_intensity(start_intensity, attenuation_coefficient, path_length)
+    return intensity
