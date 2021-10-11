@@ -30,6 +30,8 @@ for i in range(len(list_humidity[0, :])):
 
         list_intensity_loss[i,j] = max_intensity_loss
 
+list_intensity_loss = start_intensity - list_intensity_loss
+
 print(f"shape = {list_humidity.shape}\n")
 print(f"shape = {list_path_length.shape}\n")
 print(f"shape = {list_intensity_loss.shape}\n")
@@ -45,14 +47,14 @@ surf = ax.plot_surface(list_humidity, list_path_length, list_intensity_loss, cma
                        linewidth=0, antialiased=False)
 
 # Customize the z axis.
-ax.set_zlim(0.07, 0.1)
+# ax.set_zlim(0.07, 0.1)
 ax.zaxis.set_major_locator(LinearLocator(10))
 ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
 
 # Add a color bar which maps values to colors.
 fig.colorbar(surf, shrink=0.5, aspect=5, label='intensity W/cm2')
 
-plt.title('Intensity at T = 20')
+plt.title(f'Intensity loss at T = {T}, [W/cm2]')
 plt.ylabel('Path length (m)')
 plt.xlabel('Percentage Humidity')
 

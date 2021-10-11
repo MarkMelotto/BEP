@@ -29,19 +29,13 @@ for i in range(len(list_humidity[0, :])):
 
         list_intensity_loss[i,j] = max_intensity_loss
 
-print(f"shape = {list_humidity.shape}\n")
-print(f"shape = {list_path_length.shape}\n")
-print(f"shape = {list_intensity_loss.shape}\n")
-print(f"list_humidity = \n{list_humidity}\n")
-print(f"list_path_length = \n{list_path_length}\n")
-print(f"list_intensity_loss = \n{list_intensity_loss}\n")
-
+list_intensity_loss = start_intensity - list_intensity_loss
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.plot_wireframe(list_humidity, list_path_length, list_intensity_loss, rstride=10, cstride=10)
 # ax.grid()
-plt.title('Intensity at T = 20')
+plt.title(f'Intensity loss at T = {T}, [W/cm2]')
 plt.ylabel('Path length (m)')
 # ax.xlim((0,100))
 plt.xlabel('Percentage Humidity')
