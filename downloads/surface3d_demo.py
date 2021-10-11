@@ -27,6 +27,10 @@ X, Y = np.meshgrid(X, Y)
 R = np.sqrt(X**2 + Y**2)
 Z = np.sin(R)
 
+print(f"{X}\n")
+print(f"{Y}\n")
+print(f"{Z}")
+
 # Plot the surface.
 surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,
                        linewidth=0, antialiased=False)

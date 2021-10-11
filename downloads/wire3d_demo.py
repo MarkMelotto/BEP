@@ -16,9 +16,9 @@ ax = fig.add_subplot(111, projection='3d')
 # Grab some test data.
 X, Y, Z = axes3d.get_test_data(0.05)
 
-print(f"{X}\n")
-print(f"{Y}\n")
-print(f"{Z}")
+print(f"{X.shape}\n")
+print(f"{Y.shape}\n")
+print(f"{Z.shape}")
 
 # Plot a basic wireframe.
 ax.plot_wireframe(X, Y, Z, rstride=10, cstride=10)
