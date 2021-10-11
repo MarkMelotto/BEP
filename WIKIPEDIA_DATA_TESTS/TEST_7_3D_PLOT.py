@@ -27,15 +27,15 @@ for i in range(len(list_humidity[0, :])):
         max_intensity_loss = WIKI_find_intensity_loss(start_intensity, list_path_length[j, 0],
                                                       absorption_coefficient_water, list_humidity[0, i], T)
 
-        list_intensity_loss[i,j] = max_intensity_loss
+        list_intensity_loss[i, j] = (max_intensity_loss / start_intensity) * 100
 
-list_intensity_loss = start_intensity - list_intensity_loss
+list_intensity_loss = 100 - list_intensity_loss
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.plot_wireframe(list_humidity, list_path_length, list_intensity_loss, rstride=10, cstride=10)
 # ax.grid()
-plt.title(f'Intensity loss at T = {T}, [W/cm2]')
+plt.title(f'Intensity loss at T = {T}C, [%]')
 plt.ylabel('Path length (m)')
 # ax.xlim((0,100))
 plt.xlabel('Percentage Humidity')

@@ -28,9 +28,9 @@ for i in range(len(list_humidity[0, :])):
         max_intensity_loss = WIKI_find_intensity_loss(start_intensity, list_path_length[j, 0],
                                                       absorption_coefficient_water, list_humidity[0, i], T)
 
-        list_intensity_loss[i,j] = max_intensity_loss
+        list_intensity_loss[i,j] = (max_intensity_loss/start_intensity)*100
 
-list_intensity_loss = start_intensity - list_intensity_loss
+list_intensity_loss = 100 - list_intensity_loss
 
 print(f"shape = {list_humidity.shape}\n")
 print(f"shape = {list_path_length.shape}\n")
@@ -52,9 +52,9 @@ ax.zaxis.set_major_locator(LinearLocator(10))
 ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
 
 # Add a color bar which maps values to colors.
-fig.colorbar(surf, shrink=0.5, aspect=5, label='intensity W/cm2')
+fig.colorbar(surf, shrink=0.5, aspect=5, label='intensity loss %')
 
-plt.title(f'Intensity loss at T = {T}, [W/cm2]')
+plt.title(f'Intensity loss at T = {T}C, [%]')
 plt.ylabel('Path length (m)')
 plt.xlabel('Percentage Humidity')
 
