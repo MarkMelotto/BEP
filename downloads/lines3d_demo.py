@@ -12,6 +12,9 @@ z = np.linspace(-2, 2, 100)
 r = z**2 + 1
 x = r * np.sin(theta)
 y = r * np.cos(theta)
+print(x)
+print(y)
+print(z)
 ax.plot(x, y, z, label='parametric curve')
 ax.legend()
 
