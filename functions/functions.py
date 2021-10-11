@@ -31,15 +31,26 @@ def calculate_maximum_percentage_water(T):
 
     return max_percentage
 
-def make_2d_humidity_list():
-    humidity = np.zeros((101,101))
-    for i in range(101):
-        for j in range(101):
+def make_2d_humidity_list(x, y):
+    humidity = np.zeros((x,y))
+    for i in range(x):
+        for j in range(y):
             humidity[i,j] = j
 
     return humidity
 
+def make_2d_path_length_list(x, y):
+    path_length = np.zeros((x,y))
+    for i in range(x):
+        for j in range(y):
+            path_length[i,j] = j/(y-1)
+
+    return path_length
+
 if __name__ == "__main__":
     print(f"testing the decimal percentage water in air: {calculate_maximum_percentage_water(20)}")
 
-    print(f"test for humidity 2d: {make_2d_humidity_list()}")
+    print(f"test for humidity 2d: \n{make_2d_humidity_list(101, 101)}")
+
+    print(f"test for path_length 2d: \n{make_2d_path_length_list(101, 101)}")
+
