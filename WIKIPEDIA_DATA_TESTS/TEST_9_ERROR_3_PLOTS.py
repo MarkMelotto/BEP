@@ -29,7 +29,7 @@ random_temperature = True
 if not random_temperature:
     T = 10
 
-error_list = np.zeros((101,3))
+error_list = np.zeros((100,3))
 
 for i in range(len(path_length_list[:,0])):
     for j in range(len(decimal_round_list[0,:])):
@@ -58,13 +58,13 @@ error_list = error_list[1:,:] # first row are nan
 
 # making the plots
 fig, axs = plt.subplots(3, 1, sharex='col')
-axs[0].plot(path_length_list[:-1,0], error_list[:-1,0])
+axs[0].plot(path_length_list[:-1,0], error_list[:,0])
 axs[0].set_title("Mean error % in the 1 mWatt range")
 
-axs[1].plot(path_length_list[:-1,0], error_list[:-1,1])
+axs[1].plot(path_length_list[:-1,0], error_list[:,1])
 axs[1].set_title("Mean error % in the .1 mWatt range")
 
-axs[2].plot(path_length_list[:-1,0], error_list[:-1,2])
+axs[2].plot(path_length_list[:-1,0], error_list[:,2])
 axs[2].set_title("Mean error % in the .01 mWatt range")
 
 for i in range(3):
