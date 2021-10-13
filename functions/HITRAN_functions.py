@@ -1,5 +1,6 @@
 import numpy as np
 from functions import *
+from functions.functions import *
 '''functions for the HITRAN data base'''
 
 # returns lowest and highest possible absorption coefficients for both air compositions
