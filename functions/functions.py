@@ -31,7 +31,7 @@ def calculate_maximum_percentage_water(T):
 
     return max_percentage
 
-def make_2d_humidity_list(x, y):
+def make_2d_humidity_list(x=101, y=101):
     humidity = np.zeros((x,y))
     for i in range(x):
         for j in range(y):
@@ -40,7 +40,7 @@ def make_2d_humidity_list(x, y):
     return humidity
 
 # this function has to be square
-def make_2d_path_length_list(x, y):
+def make_2d_path_length_list(x=101, y=101):
     path_length = np.zeros((x,y))
     for i in range(x):
         for j in range(y):
@@ -60,9 +60,9 @@ def make_2d_decimal_list(length_path):
 if __name__ == "__main__":
     print(f"testing the decimal percentage water in air: {calculate_maximum_percentage_water(20)}")
 
-    print(f"test for humidity 2d: \n{make_2d_humidity_list(101, 101)}\n")
+    print(f"test for humidity 2d: \n{make_2d_humidity_list()}\n")
 
-    print(f"test for path_length 2d: \n{make_2d_path_length_list(101, 101)}\n")
-
-    print(f"test for decimal list 2d: \n{make_2d_decimal_list(101)}")
+    print(f"test for path_length 2d: \n{make_2d_path_length_list()}\n")
+    #
+    # print(f"test for decimal list 2d: \n{make_2d_decimal_list(101)}")
 
