@@ -59,17 +59,17 @@ error_list = error_list[1:,:] # first row are nan
 # making the plots
 fig, axs = plt.subplots(3, 1, sharex='col')
 axs[0].plot(path_length_list[:-1,0], error_list[:,0])
-axs[0].set_title(f"Mean error in the 1 mWatt range, LLN at N = {N}")
+axs[0].set_title(f"Mean error in the 1 mWatt/cm2 range, LLN at N = {N}")
 
 axs[1].plot(path_length_list[:-1,0], error_list[:,1])
-axs[1].set_title(f"Mean error in the .1 mWatt range, LLN at N = {N}")
+axs[1].set_title(f"Mean error in the .1 mWatt/cm2 range, LLN at N = {N}")
 
 axs[2].plot(path_length_list[:-1,0], error_list[:,2])
-axs[2].set_title(f"Mean error in the .01 mWatt range, LLN at N = {N}")
+axs[2].set_title(f"Mean error in the .01 mWatt/cm2 range, LLN at N = {N}")
 
 for i in range(3):
     axs[i].grid()
-    axs[i].set_xlabel('light path length (m)')
+    axs[i].set_xlabel(f'light ({wavelength*1e9} nm) path length (m)')
     axs[i].set_ylabel('%')
 
 plt.tight_layout()
