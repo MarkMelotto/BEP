@@ -11,9 +11,9 @@ absorption_coefficient_water = WIKI_get_workable_absorption_coeff_water()
 list_wavelengths = WIKI_workable_available_wavelengths()
 
 # choosing our wavelength
-wavelength = 940e-9
+wavelength = 980e-9
 
-start_intensity = 0.100  # Watt/cm2
+start_intensity = 1.8/4  # Watt/cm2
 path_length_list = make_2d_path_length_list(101, 101)  # meter
 path_length_list = path_length_list[:,:3]
 path_length_list = path_length_list[1:,:] # dont want the the path length of 0
@@ -69,7 +69,7 @@ axs[2].set_title(f"Mean error .01 mWatt/cm2 range, LLN at N = {N}, I0 {start_int
 
 for i in range(3):
     axs[i].grid()
-    axs[i].set_xlabel(f'light ({wavelength*1e9} nm) path length (m)')
+    axs[i].set_xlabel(f'light ({wavelength*1e9:.0f} nm) path length (m)')
     axs[i].set_ylabel('%')
 
 plt.tight_layout()
