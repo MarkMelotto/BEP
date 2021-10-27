@@ -11,7 +11,7 @@ T = 20
 
 for wavelength in list_wavelengths:
     low_humidity_absorption_coefficient, high_humidity_absorption_coefficient = \
-        0, WIKI_absorption_coefficient_air_composition_high_humidity_at_T(absorption_coefficient_water[wavelength], T)
+        0, WIKI_absorption_coefficient_air_composition_max_humidity_at_T(absorption_coefficient_water[wavelength], T)
 
     absorbed_light_low_humidity_intensity = measure_intensity(start_intensity,
                                                               low_humidity_absorption_coefficient, path_length)

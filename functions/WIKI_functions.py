@@ -20,7 +20,7 @@ def WIKI_find_humidity_from_intensity(start_intensity, received_intensity, path_
 
 
 # now calculate absorption coefficient with the temperature
-def WIKI_absorption_coefficient_air_composition_high_humidity_at_T(mu_H20, T):
+def WIKI_absorption_coefficient_air_composition_max_humidity_at_T(mu_H20, T):
 
     high_H2O = calculate_maximum_percentage_water(T)
     high_humidity = mu_H20 * high_H2O

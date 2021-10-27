@@ -19,7 +19,7 @@ for wavelength in list_wavelengths:
     T = np.random.randint(-20, 60)
     list_real_humidity.append(REAL_humidity)  # for a plot
 
-    concentration_water = WIKI_absorption_coefficient_air_composition_high_humidity_at_T(absorption_coefficient_water[wavelength], T)
+    concentration_water = WIKI_absorption_coefficient_air_composition_max_humidity_at_T(absorption_coefficient_water[wavelength], T)
 
     max_intensity_loss = measure_intensity(start_intensity, concentration_water, path_length)
 
