@@ -57,6 +57,10 @@ def make_2d_decimal_list(length_path):
 
     return decimal_list
 
+# returns micro ampere for given intensity that the photodiode receives
+def photodetector_1(intensity):
+    return (20/0.56)*intensity
+
 if __name__ == "__main__":
     print(f"testing the decimal percentage water in air: {calculate_maximum_percentage_water(20)}")
 
