@@ -51,7 +51,7 @@ voltage_measured = resistance_resistor * induced_current
 
 print(f"Wavelength: {wavelength*1e9:.0f} nm, T = {temperature} C, humidity = {humidity} %, \n"
       f"distance = {laser_path_length*100:.0f} cm, resistance = {resistance_resistor} Ohm\n"
-      f"pulse diameter = {diameter_laser} mm \n"
+      f"laser power = {laser_power} mWatt, pulse diameter = {diameter_laser} mm \n"
       f"\n"
       f"laser intensity to start with: {intensity_at_laser_tip:.3f} mW/cm2\n"
       f"laser intensity at detector: {light_at_detector:.3f} mW/cm2\n"
