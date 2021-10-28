@@ -1,4 +1,5 @@
-"""this py file tests the whole system and its variables"""
+"""this py file tests the whole system and its variables:
+https://rocelec.widen.net/view/pdf/k7jo7wfaxu/ONSM-S-A0003544331-1.pdf?t.download=true&u=5oefqw"""
 
 from functions.WIKI_functions import *
 from functions.WIKI_data import *
