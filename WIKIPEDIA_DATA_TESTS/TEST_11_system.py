@@ -14,6 +14,9 @@ laser_path_length = 0.2  # m
 
 resistance_resistor = 1000  # Ohm
 
+relative_spectral_sensitivity = 0.95  # 980nm
+# relative_spectral_sensitivity = 1  # 940nm
+
 # angle_laser_beam_on_detector = 0 # degree
 
 # reverse_voltage = 5
@@ -45,7 +48,7 @@ light_at_detector = measure_intensity(intensity_at_laser_tip, attenuation, laser
 
 # |---- calculating the current this induces ----|
 
-induced_current = photodetector_1(light_at_detector)
+induced_current = photodetector_1(light_at_detector)*relative_spectral_sensitivity
 
 voltage_measured = resistance_resistor * induced_current
 

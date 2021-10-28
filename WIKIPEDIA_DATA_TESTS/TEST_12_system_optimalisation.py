@@ -14,6 +14,9 @@ laser_path_length = np.arange(0.1,.45,.05)  # m
 
 resistance_resistor = 1000  # Ohm
 
+relative_spectral_sensitivity = 0.95  # 980nm
+# relative_spectral_sensitivity = 1  # 940nm
+
 # angle_laser_beam_on_detector = 0 # degree
 
 # reverse_voltage = 5
@@ -64,8 +67,8 @@ for power in laser_power:
 
             # |---- calculating the current this induces ----|
 
-            induced_current_low = photodetector_1(light_at_detector_low)
-            induced_current_high = photodetector_1(light_at_detector_high)
+            induced_current_low = photodetector_1(light_at_detector_low)*relative_spectral_sensitivity
+            induced_current_high = photodetector_1(light_at_detector_high)*relative_spectral_sensitivity
 
             difference = abs(induced_current_low-induced_current_high)
 
