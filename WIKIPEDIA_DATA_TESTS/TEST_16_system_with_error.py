@@ -22,7 +22,7 @@ relative_spectral_sensitivity = 0.95  # 980nm
 
 reverse_voltage = 5
 
-resistor_error = 0.01
+resistor_error = 0.001
 
 # |---- data ----|
 
@@ -75,9 +75,9 @@ error_difference = y.copy()
 
 for i in range(len(resistance_resistor)):
     resistor_measurement[:, :, i] *= resistance_resistor[i]
-    error_low[:, :, i] *= (resistance_resistor[i] + (resistance_resistor[i] * resistor_error))
-    error_high[:, :, i] *= (resistance_resistor[i] - (resistance_resistor[i] * resistor_error))
-    error_difference[:, :, i] = error_high[:, :, i] - error_low[:, :, i]
+    error_low[:, :, i] *= (resistance_resistor[i] - (resistance_resistor[i] * resistor_error))
+    error_high[:, :, i] *= (resistance_resistor[i] + (resistance_resistor[i] * resistor_error))
+    error_difference[:, :, i] = abs(error_high[:, :, i] - error_low[:, :, i])
 
 
 voltage_measured = resistor_measurement  # this is sloppy, i know
@@ -91,7 +91,9 @@ for i in range(len(voltage_measured[:, 0, 0])):
                 voltage_measured[i, j, k] = reverse_voltage
 
 voltage_measured *= 1e3  # to make it into mV
-error_difference *=1e3
+error_low *= 1e3
+error_high *= 1e3
+error_difference *= 1e3
 # y *= 1e6
 
 # lets look at the difference
@@ -109,13 +111,18 @@ fig, axs = plt.subplots(len(laser_path_length), len(resistance_resistor), figsiz
 
 for i in range(len(laser_path_length)):
     for j in range(len(resistance_resistor)):
-        axs[i, j].errorbar(humidity, voltage_measured[i, :, j], yerr=error_difference[i, :, j])
+        # axs[i, j].errorbar(humidity, voltage_measured[i, :, j], yerr=error_difference[i, :, j])
+        axs[i, j].plot(humidity, voltage_measured[i, :, j], label='calculated potential')
+        axs[i, j].plot(humidity, error_low[i, :, j], label='min error')
+        axs[i, j].plot(humidity, error_high[i, :, j], label='max error')
         axs[i, j].set_title(
             f"difference voltage, I = {intensity[0]:.2f} mW/cm2, path = {laser_path_length[i] * 100:.1f} cm\n"
-            f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V, error in R = {resistor_error*100:.0f} %")
+            f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V, error in R = {resistor_error*100:.1f} %")
         axs[i, j].grid()
         axs[i, j].set_xlabel(f'light ({wavelength * 1e9:.0f} nm) humidity (%)')
         axs[i, j].set_ylabel('mV')
+        axs[i, j].legend()
+
 
 plt.tight_layout()
 plt.show()
