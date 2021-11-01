@@ -93,7 +93,7 @@ for i in range(len(voltage_measured[:, 0, 0])):
 voltage_measured *= 1e3  # to make it into mV
 error_low *= 1e3
 error_high *= 1e3
-error_difference *= 1e3
+error_difference *= 1e3 / 2
 # y *= 1e6
 
 # lets look at the difference
@@ -111,7 +111,7 @@ fig, axs = plt.subplots(len(laser_path_length), len(resistance_resistor), figsiz
 
 for i in range(len(laser_path_length)):
     for j in range(len(resistance_resistor)):
-        # axs[i, j].errorbar(humidity, voltage_measured[i, :, j], yerr=error_difference[i, :, j])
+        axs[i, j].errorbar(humidity, voltage_measured[i, :, j], yerr=error_difference[i, :, j], fmt='-o')
         axs[i, j].plot(humidity, voltage_measured[i, :, j], label='calculated potential')
         axs[i, j].plot(humidity, error_low[i, :, j], label='min error')
         axs[i, j].plot(humidity, error_high[i, :, j], label='max error')
