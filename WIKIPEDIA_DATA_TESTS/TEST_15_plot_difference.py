@@ -91,9 +91,6 @@ for i in range(len(voltage_measured[:, 0, 0])):
         for k in range(len(voltage_measured[0, 0, :])):
             differences[i, j, k] = abs(voltage_measured[i, j, k] - voltage_measured[i, j+1, k])
 
-print(voltage_measured)
-print(differences)
-
 # plot
 
 fig, axs = plt.subplots(len(laser_path_length), len(resistance_resistor), figsize=(20, 15))
