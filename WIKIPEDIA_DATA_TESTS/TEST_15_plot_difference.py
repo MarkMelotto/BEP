@@ -100,7 +100,7 @@ for i in range(len(laser_path_length)):
         axs[i, j].plot(humidity, differences[i, :, j])
         axs[i, j].set_title(
             f"difference voltage, I = {intensity[0]:.2f} mW/cm2, path = {laser_path_length[i] * 100:.1f} cm\n"
-            f"resistance = {resistance_resistor[j]:.0f} Ohm")
+            f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V")
         axs[i, j].grid()
         axs[i, j].set_xlabel(f'light ({wavelength * 1e9:.0f} nm) humidity (%)')
         axs[i, j].set_ylabel('mV')
