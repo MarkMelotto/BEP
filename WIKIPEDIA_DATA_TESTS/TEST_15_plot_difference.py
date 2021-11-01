@@ -1,5 +1,4 @@
 """this py file tests the whole system and its variables"""
-import numpy as np
 
 from functions.WIKI_functions import *
 from functions.WIKI_data import *
