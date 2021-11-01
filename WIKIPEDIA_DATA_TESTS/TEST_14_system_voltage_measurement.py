@@ -21,7 +21,7 @@ relative_spectral_sensitivity = 0.95  # 980nm
 
 # angle_laser_beam_on_detector = 0 # degree
 
-# reverse_voltage = 5
+reverse_voltage = 5
 
 
 # |---- data ----|
@@ -71,8 +71,17 @@ resistor_measurement = y
 for i in range(len(resistance_resistor)):
     resistor_measurement[:,:,i] *= resistance_resistor[i]
 
+
 voltage_measured = resistor_measurement  # this is sloppy, i know
-voltage_measured *= 1e3
+
+for i in range(len(voltage_measured[:,0,0])):
+    for j in range(len(voltage_measured[0,:,0])):
+        for k in range(len(voltage_measured[0,0,:])):
+            print()
+            if voltage_measured[i, j, k] > reverse_voltage:
+                voltage_measured[i, j, k] = reverse_voltage
+
+voltage_measured *= 1e3  # to make it into mV
 # y *= 1e6
 
 fig, axs = plt.subplots(4, 3, figsize=(20,15))
