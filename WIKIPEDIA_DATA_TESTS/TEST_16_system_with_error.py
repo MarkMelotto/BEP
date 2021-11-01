@@ -91,6 +91,7 @@ for i in range(len(voltage_measured[:, 0, 0])):
                 voltage_measured[i, j, k] = reverse_voltage
 
 voltage_measured *= 1e3  # to make it into mV
+error_difference *=1e3
 # y *= 1e6
 
 # lets look at the difference
@@ -111,7 +112,7 @@ for i in range(len(laser_path_length)):
         axs[i, j].errorbar(humidity, voltage_measured[i, :, j], yerr=error_difference[i, :, j])
         axs[i, j].set_title(
             f"difference voltage, I = {intensity[0]:.2f} mW/cm2, path = {laser_path_length[i] * 100:.1f} cm\n"
-            f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V")
+            f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V, error in R = {resistor_error*100:.0f} %")
         axs[i, j].grid()
         axs[i, j].set_xlabel(f'light ({wavelength * 1e9:.0f} nm) humidity (%)')
         axs[i, j].set_ylabel('mV')
