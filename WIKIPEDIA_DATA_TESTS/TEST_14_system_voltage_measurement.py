@@ -77,7 +77,7 @@ voltage_measured = resistor_measurement  # this is sloppy, i know
 for i in range(len(voltage_measured[:,0,0])):
     for j in range(len(voltage_measured[0,:,0])):
         for k in range(len(voltage_measured[0,0,:])):
-            print()
+
             if voltage_measured[i, j, k] > reverse_voltage:
                 voltage_measured[i, j, k] = reverse_voltage
 
