@@ -159,7 +159,7 @@ for i in range(len(laser_path_length)):
         # axs[i, j].plot(humidity, error_low[i, :, j], label='min error')
         # axs[i, j].plot(humidity, error_high[i, :, j], label='max error')
         axs[i, j].set_title(
-            f"difference voltage, I = {intensity[0]:.2f} mW/cm2, path = {laser_path_length[i] * 100:.1f} cm\n"
+            f"measured voltage, I = {intensity[0]:.2f} mW/cm2, path = {laser_path_length[i] * 100:.1f} cm\n"
             f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V, error diameter = {diameter_laser_error:.2f} mm\n"
             f"error in R = {resistor_error*100:.1f} %, error in path length = {path_length_error*100:.1f} cm")
         axs[i, j].grid()
