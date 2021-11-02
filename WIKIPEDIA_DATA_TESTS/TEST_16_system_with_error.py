@@ -26,6 +26,8 @@ resistor_error = 0.001
 
 path_length_error = 0.005  # m = .5 cm
 
+diameter_laser_error = 0  # mm
+
 # |---- data ----|
 
 absorption_coefficient_water = WIKI_get_workable_absorption_coeff_water()
@@ -50,9 +52,20 @@ intensity = []
 for power in laser_power:
     for diameter in range(len(diameter_laser)):
         surface_area_laser = np.pi * (diameter_laser[diameter] / 2) ** 2  # mm2
+
+        surface_area_laser_low = np.pi * ((diameter_laser[diameter] - diameter_laser_error) / 2) ** 2  # mm2
+        surface_area_laser_high = np.pi * ((diameter_laser[diameter] + diameter_laser_error) / 2) ** 2  # mm2
+
         surface_area_detector = 6.5  # mm2
         intensity_at_laser_tip = power / surface_area_laser  # mWatt/mm2
+
+        intensity_at_laser_tip_low = power / surface_area_laser_low  # mWatt/mm2
+        intensity_at_laser_tip_high = power / surface_area_laser_high  # mWatt/mm2
+
         intensity_at_laser_tip *= 100  # mWatt/cm2
+        intensity_at_laser_tip_low *= 100  # mWatt/cm2
+        intensity_at_laser_tip_high *= 100  # mWatt/cm2
+
         intensity.append(intensity_at_laser_tip)
 
         for hum in range(len(humidity)):
@@ -60,12 +73,12 @@ for power in laser_power:
             for i in range(len(laser_path_length)):
                 max_attenuation = WIKI_absorption_coefficient_air_composition_max_humidity_at_T(
                     absorption_coefficient_water[wavelength], temperature)
-                attenuation_low = (humidity[hum] / 100) * max_attenuation
+                attenuation = (humidity[hum] / 100) * max_attenuation
 
-                light_at_detector = measure_intensity(intensity_at_laser_tip, attenuation_low, laser_path_length[i])
+                light_at_detector = measure_intensity(intensity_at_laser_tip, attenuation, laser_path_length[i])
 
-                light_at_detector_low_error = measure_intensity(intensity_at_laser_tip, attenuation_low, laser_path_length[i] - path_length_error)
-                light_at_detector_high_error = measure_intensity(intensity_at_laser_tip, attenuation_low, laser_path_length[i] + path_length_error)
+                light_at_detector_low_error = measure_intensity(intensity_at_laser_tip_low, attenuation, laser_path_length[i] - path_length_error)
+                light_at_detector_high_error = measure_intensity(intensity_at_laser_tip_high, attenuation, laser_path_length[i] + path_length_error)
 
                 # |---- calculating the current this induces ----|
 
@@ -147,7 +160,7 @@ for i in range(len(laser_path_length)):
         # axs[i, j].plot(humidity, error_high[i, :, j], label='max error')
         axs[i, j].set_title(
             f"difference voltage, I = {intensity[0]:.2f} mW/cm2, path = {laser_path_length[i] * 100:.1f} cm\n"
-            f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V \n"
+            f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V, error diameter = {diameter_laser_error:.2f} mm\n"
             f"error in R = {resistor_error*100:.1f} %, error in path length = {path_length_error*100:.1f} cm")
         axs[i, j].grid()
         axs[i, j].set_xlabel(f'light ({wavelength * 1e9:.0f} nm) humidity (%)')
