@@ -154,7 +154,7 @@ fig, axs = plt.subplots(len(laser_path_length), len(resistance_resistor), figsiz
 for i in range(len(laser_path_length)):
     for j in range(len(resistance_resistor)):
         axs[i, j].errorbar(humidity, voltage_measured[i, :, j], yerr=error_difference[i, :, j],
-                           fmt='-o', label='calculated potential + error')
+                           fmt='-', label='calculated potential + error')
         # axs[i, j].plot(humidity, voltage_measured[i, :, j], label='calculated potential')
         # axs[i, j].plot(humidity, error_low[i, :, j], label='min error')
         # axs[i, j].plot(humidity, error_high[i, :, j], label='max error')
