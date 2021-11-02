@@ -72,12 +72,8 @@ error_low = y.copy()
 error_high = y.copy()
 error_difference = y.copy()
 
-
 for i in range(len(resistance_resistor)):
     resistor_measurement[:, :, i] *= resistance_resistor[i]
-    error_low[:, :, i] *= (resistance_resistor[i] - (resistance_resistor[i] * resistor_error))
-    error_high[:, :, i] *= (resistance_resistor[i] + (resistance_resistor[i] * resistor_error))
-    error_difference[:, :, i] = abs(error_high[:, :, i] - error_low[:, :, i])
 
 
 voltage_measured = resistor_measurement  # this is sloppy, i know
@@ -89,6 +85,26 @@ for i in range(len(voltage_measured[:, 0, 0])):
 
             if voltage_measured[i, j, k] > reverse_voltage:
                 voltage_measured[i, j, k] = reverse_voltage
+
+for i in range(len(resistance_resistor)):
+    low_point = (resistance_resistor[i] - (resistance_resistor[i] * resistor_error))
+    high_point = (resistance_resistor[i] + (resistance_resistor[i] * resistor_error))
+    error_low[:, :, i] *= low_point
+    error_high[:, :, i] *= high_point
+    error_difference[:, :, i] = abs(error_high[:, :, i] - error_low[:, :, i])
+
+# check if the voltage exceeds reverse voltage
+for i in range(len(voltage_measured[:, 0, 0])):
+    for j in range(len(voltage_measured[0, :, 0])):
+        for k in range(len(voltage_measured[0, 0, :])):
+
+            if error_low[i, j, k] > reverse_voltage:
+                error_low[i, j, k] = reverse_voltage
+            if error_high[i, j, k] > reverse_voltage:
+                error_high[i, j, k] = reverse_voltage
+
+for i in range(len(resistance_resistor)):
+    error_difference[:, :, i] = abs(error_high[:, :, i] - error_low[:, :, i])
 
 voltage_measured *= 1e3  # to make it into mV
 error_low *= 1e3
@@ -111,10 +127,11 @@ fig, axs = plt.subplots(len(laser_path_length), len(resistance_resistor), figsiz
 
 for i in range(len(laser_path_length)):
     for j in range(len(resistance_resistor)):
-        axs[i, j].errorbar(humidity, voltage_measured[i, :, j], yerr=error_difference[i, :, j], fmt='-o')
-        axs[i, j].plot(humidity, voltage_measured[i, :, j], label='calculated potential')
-        axs[i, j].plot(humidity, error_low[i, :, j], label='min error')
-        axs[i, j].plot(humidity, error_high[i, :, j], label='max error')
+        axs[i, j].errorbar(humidity, voltage_measured[i, :, j], yerr=error_difference[i, :, j],
+                           fmt='-o', label='calculated potential + error')
+        # axs[i, j].plot(humidity, voltage_measured[i, :, j], label='calculated potential')
+        # axs[i, j].plot(humidity, error_low[i, :, j], label='min error')
+        # axs[i, j].plot(humidity, error_high[i, :, j], label='max error')
         axs[i, j].set_title(
             f"difference voltage, I = {intensity[0]:.2f} mW/cm2, path = {laser_path_length[i] * 100:.1f} cm\n"
             f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V, error in R = {resistor_error*100:.1f} %")
