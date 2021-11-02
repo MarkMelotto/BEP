@@ -24,6 +24,8 @@ reverse_voltage = 5
 
 resistor_error = 0.001
 
+path_length_error = 0.005  # m = .5 cm
+
 # |---- data ----|
 
 absorption_coefficient_water = WIKI_get_workable_absorption_coeff_water()
@@ -37,6 +39,9 @@ humidity = np.linspace(1, 100)  # %
 # |---- empty list for plots ----|
 
 y = np.zeros((len(laser_path_length), len(humidity), len(resistance_resistor)))
+error_low = y.copy()
+error_high = y.copy()
+error_difference = y.copy()
 intensity = []
 
 
@@ -57,20 +62,28 @@ for power in laser_power:
                     absorption_coefficient_water[wavelength], temperature)
                 attenuation_low = (humidity[hum] / 100) * max_attenuation
 
-                light_at_detector_low = measure_intensity(intensity_at_laser_tip, attenuation_low, laser_path_length[i])
+                light_at_detector = measure_intensity(intensity_at_laser_tip, attenuation_low, laser_path_length[i])
+
+                light_at_detector_low_error = measure_intensity(intensity_at_laser_tip, attenuation_low, laser_path_length[i] - path_length_error)
+                light_at_detector_high_error = measure_intensity(intensity_at_laser_tip, attenuation_low, laser_path_length[i] + path_length_error)
 
                 # |---- calculating the current this induces ----|
 
-                induced_current_low = photodetector_1(light_at_detector_low) * relative_spectral_sensitivity
+                induced_current = photodetector_1(light_at_detector) * relative_spectral_sensitivity
+
+                induced_current_low_error = photodetector_1(light_at_detector_low_error) * relative_spectral_sensitivity
+                induced_current_high_error = photodetector_1(light_at_detector_high_error) * relative_spectral_sensitivity
 
                 # the plot data
-                y[i, hum, :] = induced_current_low
+                y[i, hum, :] = induced_current
+                error_low[i, hum, :] = induced_current_low_error
+                error_high[i, hum, :] = induced_current_high_error
 
 # more calculations
 resistor_measurement = y.copy()
-error_low = y.copy()
-error_high = y.copy()
-error_difference = y.copy()
+# error_low = y.copy()
+# error_high = y.copy()
+# error_difference = y.copy()
 
 for i in range(len(resistance_resistor)):
     resistor_measurement[:, :, i] *= resistance_resistor[i]
@@ -134,7 +147,8 @@ for i in range(len(laser_path_length)):
         # axs[i, j].plot(humidity, error_high[i, :, j], label='max error')
         axs[i, j].set_title(
             f"difference voltage, I = {intensity[0]:.2f} mW/cm2, path = {laser_path_length[i] * 100:.1f} cm\n"
-            f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V, error in R = {resistor_error*100:.1f} %")
+            f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V \n"
+            f"error in R = {resistor_error*100:.1f} %, error in path length = {path_length_error*100:.1f} cm")
         axs[i, j].grid()
         axs[i, j].set_xlabel(f'light ({wavelength * 1e9:.0f} nm) humidity (%)')
         axs[i, j].set_ylabel('mV')
