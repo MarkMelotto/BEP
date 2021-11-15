@@ -8,8 +8,10 @@ a4 = 3.031240396e-6
 a5 = 2.034080948e-8
 a6 = 6.136820929e-11
 
-T = 50
+T = 30
 approximation = a0 + T*(a1+T*(a2 + T*(a3 + T*(a4 + T*(a5 + a6*T)))))
 my_calc = calculate_water_saturation(T)
+calc = calculate_maximum_percentage_water(T)
 
 print(f"my water saturation = {my_calc}, approximation = {approximation}")
+print(f"max percentage water = {calc}")
