@@ -1,6 +1,7 @@
 
 
 R = 46.5e3
+spectral_sensitivity = 0.9
 
 while True:
     volt = input("gimme the voltage measured in mV\n")
@@ -9,6 +10,6 @@ while True:
     current = volt/R
 
     # current *= 1e6
-    intensity = current / 37
+    intensity = (current / 37) / spectral_sensitivity
 
     print(f"incoming intensity = {intensity} mW/cm2\n")
