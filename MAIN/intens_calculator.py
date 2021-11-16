@@ -1,7 +1,7 @@
 
 
 R = 46.5e3
-spectral_sensitivity = 0.9
+# spectral_sensitivity = 0.9
 spectral_sensitivity = input("what is the current spectral sensitivity?:\n")
 spectral_sensitivity = float(spectral_sensitivity)
 
