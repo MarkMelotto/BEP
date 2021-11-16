@@ -11,6 +11,6 @@ while True:
     volt *= 1e-3  # Volt
     current = volt/R  # Ampere
     current *= 1e6  # uA
-    intensity = (current / 37) / spectral_sensitivity
+    intensity = (current / 37) * spectral_sensitivity
 
     print(f"incoming intensity = {intensity} mW/cm2\n")
