@@ -14,7 +14,7 @@ max_attenuation = WIKI_absorption_coefficient_air_composition_max_humidity_at_T(
 attenuation = (50 / 100) * max_attenuation  # dit is mu*c
 
 light_at_detector = measure_intensity(1.7, attenuation, 0.4)
-induced_current = photodetector_1(light_at_detector) * 0.95
+induced_current = photodetector_1(light_at_detector) / 0.95
 volt = induced_current * 46.5e3
 
 max_c = calculate_maximum_percentage_water(temperature)  # c
