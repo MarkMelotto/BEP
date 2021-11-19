@@ -13,7 +13,7 @@ diameter_laser = [15]  # mm
 
 laser_path_length = np.arange(0.1, .5, .1)  # m
 
-resistance_resistor = [1e3, 1e4, 5e4]  # Ohm
+resistance_resistor = [1e3, 1e4, 46.5e3]  # Ohm
 
 relative_spectral_sensitivity = 0.95  # 980nm
 # relative_spectral_sensitivity = 1  # 940nm
@@ -72,8 +72,10 @@ for power in laser_power:
             # |---- humidity calculations ----|
             for i in range(len(laser_path_length)):
                 max_attenuation = WIKI_absorption_coefficient_air_composition_max_humidity_at_T(
-                    absorption_coefficient_water[wavelength], temperature)
-                attenuation = (humidity[hum] / 100) * max_attenuation
+                    absorption_coefficient_water[wavelength], temperature)  # c_max * a
+
+                attenuation = (humidity[hum] / 100) * max_attenuation # c * a
+                # attenuation /= absorption_coefficient_water[wavelength]
 
                 light_at_detector = measure_intensity(intensity_at_laser_tip, attenuation, laser_path_length[i])
 

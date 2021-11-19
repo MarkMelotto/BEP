@@ -14,7 +14,7 @@ diameter_laser = [15]  # mm
 
 laser_path_length = np.arange(0.1, .5, .1)  # m
 
-resistance_resistor = [1e3, 1e4, 1e5]  # Ohm
+resistance_resistor = [1e3, 1e4, 4.65e4]  # Ohm
 
 relative_spectral_sensitivity = 0.95  # 980nm
 # relative_spectral_sensitivity = 1  # 940nm
