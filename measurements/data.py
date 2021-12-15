@@ -1,3 +1,9 @@
+'''
+data is presented as:
+first thing: system data:[resistor, distance lamp to box, distance box to detector]
+then it gives humidity:[light off current, light on current, temperature]
+'''
+
 test_1 = {
     'system_data':[3.03e6, 1, 27],
     48:[127,1940,21.4],
