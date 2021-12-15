@@ -184,6 +184,7 @@ Sources will be directly linked underneath the explanation.
 
 - MAIN
   outdated stuff, this is where I started
+  Also some random stuff lives here
 
 
 - venv
@@ -192,6 +193,7 @@ Sources will be directly linked underneath the explanation.
 
 - WIKIPEDIA_DATA_TESTS
 
+all the tests here are based of of theoretical calculations, to basically see if the theory is measureable.
 
   - TEST_1:
     looks at the difference of different wavelength light passing through the air.
@@ -223,3 +225,32 @@ Sources will be directly linked underneath the explanation.
   - TEST_9:
     makes 3 plots to show the error percentage, using path length from 0 to 1 meters
     and 3 different decimals: 1 mwatt, .1 mwatt and .01 mwatt
+    
+  - TEST_10:
+    calculates the intensity at a certain diameter of the laser pulse, given the power of the laser
+    
+  - TEST_11:
+    calculates the system that this project has in mind. Because the detector gives a current based on the incoming intensity.
+    This means we can use Ohm's Law to calculate this current over a resistor with a potentiometer.
+    This pyfile tests/calculates if this is measureable theoretically
+
+  - TEST_12:
+    This file uses the same principle as TEST_11 to see what the optimal conditions would be for a reallife test setup.
+    The file prints the best result, with the parameters.
+    
+  - TEST_13:
+    plots the difference in current between a certain humidity, for different intensities and over a certain path length
+    
+  - TEST_14:
+    theoretically tests the whole system for different parameters and plots them.
+    Intensity is set at a reasonable amount (for the chosen detector).
+    the different variables are distance (colomn) and resistor (rows)
+    
+  - TEST_15:
+    has the same parameters as TEST_14, but now it theoretically calculates the difference between 2 humidity % points.
+    So it takes the i+1 humidity and subtracts the i humidity values for the voltage.
+    
+  - TEST_16:
+    This calculates in the same way TEST_14 does, but now it has errors in measurements added.
+    So it theoretically calculates the error om resistor, diameter of the laser beam and error in path length.
+    That is why it drops to 0 at the last data point.
