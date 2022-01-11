@@ -40,16 +40,16 @@ def color_magic(temp):
     difference = max_temp - min_temp
 
     some_dict = dict()
-    test = []
+    test_ = []
 
     for T in temp:
         red_color = (T - min_temp) / difference
         # RGB = [red_color,red_color/1.5,0.545]
         RGB = [red_color, 0, red_color/3]
         some_dict[T] = RGB
-        test.append(RGB)
+        test_.append(RGB)
 
-    return some_dict, test
+    return some_dict, test_
 
 data = []
 
