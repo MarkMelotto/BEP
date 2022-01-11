@@ -87,3 +87,4 @@ for i in range(len(data)):
 
 plt.tight_layout()
 plt.show()
+plt.savefig("data")
