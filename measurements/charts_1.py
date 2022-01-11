@@ -44,7 +44,8 @@ def color_magic(temp):
 
     for T in temp:
         red_color = (T - min_temp) / difference
-        RGB = [red_color,red_color/2,0.545]
+        # RGB = [red_color,red_color/1.5,0.545]
+        RGB = [red_color, 0, red_color/3]
         some_dict[T] = RGB
         test.append(RGB)
 
