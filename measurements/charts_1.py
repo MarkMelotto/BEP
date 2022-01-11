@@ -86,5 +86,5 @@ for i in range(len(data)):
     axs[i].set_ylabel('mV')
 
 plt.tight_layout()
-plt.show()
 plt.savefig("data")
+plt.show()
