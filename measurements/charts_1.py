@@ -2,9 +2,9 @@ from measurements.data import *
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D  # for legend handle
 
-# skipping test 2 for now, as it has less data points
+# skipping test 2 for now, as it has less data points and it sucks
 
-tests = [test_1, test_3, test_4] # all 12 data points
+tests = [test_1, test_3, test_4] # all have 12 data points
 
 # function to read the data out of my stored data
 def test_data_reader(test):
