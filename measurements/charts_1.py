@@ -65,7 +65,7 @@ for test in tests:
                  "dark_voltage": dark_voltage,
                  "light_voltage": light_voltage, "temperature": temperature, "voltage_gain": voltage_gain})
 
-fig, axs = plt.subplots(len(data), figsize=(20, 15))
+fig, axs = plt.subplots(len(data), figsize=(20, 15), sharex=True)
 
 for i in range(len(data)):
     x = data[i]["humidity"]
