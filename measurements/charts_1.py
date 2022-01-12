@@ -85,6 +85,10 @@ for i in range(len(data)):
     axs[i].set_xlabel(f'humidity (%)')
     axs[i].set_ylabel('mV')
 
+axs[0].set_ylim([1785, 1840])
+axs[1].set_ylim([1585, 1640])
+axs[2].set_ylim([605, 660])
+
 plt.tight_layout()
 plt.savefig("data")
 plt.show()
