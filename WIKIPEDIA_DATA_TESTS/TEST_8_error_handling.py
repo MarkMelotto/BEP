@@ -11,10 +11,10 @@ start_intensity = 0.100  # Watt/cm2
 path_length = 0.2  # meter
 
 # decimals rounded
-decimal_round = 4
+decimal_round = 7
 
 # number of iterations
-N = 10000
+N = 1000000
 if not random_temperature:
     T = 10
 

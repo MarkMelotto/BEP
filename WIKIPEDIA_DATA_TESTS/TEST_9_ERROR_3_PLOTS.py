@@ -11,7 +11,7 @@ absorption_coefficient_water = WIKI_get_workable_absorption_coeff_water()
 list_wavelengths = WIKI_workable_available_wavelengths()
 
 # choosing our wavelength
-wavelength = 980e-9
+wavelength = 940e-9
 
 start_intensity = 1.8/4  # Watt/cm2
 path_length_list = make_2d_path_length_list(101, 101)  # meter
@@ -22,7 +22,7 @@ path_length_list = path_length_list[1:,:] # dont want the the path length of 0
 decimal_round_list = make_2d_decimal_list(100)
 
 # number of iterations
-N = 10000
+N = 100000
 
 # if we want to control the temperature, we do that here
 random_temperature = True
@@ -57,15 +57,15 @@ for i in range(len(path_length_list[:,0])):
 error_list = error_list[1:,:] # first row are nan
 
 # making the plots
-fig, axs = plt.subplots(3, 1, sharex='col')
+fig, axs = plt.subplots(3, 1, sharex='col', figsize=(20, 15))
 axs[0].plot(path_length_list[:-1,0], error_list[:,0])
-axs[0].set_title(f"Mean error 1 mWatt/cm2 range, LLN at N = {N}, I0 {start_intensity} Watt/cm2")
+axs[0].set_title(f"Mean error 1 mWatt/cm2 range, LLN at N = {N}, I_0 {start_intensity} Watt/cm2")
 
 axs[1].plot(path_length_list[:-1,0], error_list[:,1])
-axs[1].set_title(f"Mean error .1 mWatt/cm2 range, LLN at N = {N}, I0 {start_intensity} Watt/cm2")
+axs[1].set_title(f"Mean error .1 mWatt/cm2 range, LLN at N = {N}, I_0 {start_intensity} Watt/cm2")
 
 axs[2].plot(path_length_list[:-1,0], error_list[:,2])
-axs[2].set_title(f"Mean error .01 mWatt/cm2 range, LLN at N = {N}, I0 {start_intensity} Watt/cm2")
+axs[2].set_title(f"Mean error .01 mWatt/cm2 range, LLN at N = {N}, I_0 {start_intensity} Watt/cm2")
 
 for i in range(3):
     axs[i].grid()
@@ -73,4 +73,5 @@ for i in range(3):
     axs[i].set_ylabel('%')
 
 plt.tight_layout()
+plt.savefig("error_plots")
 plt.show()

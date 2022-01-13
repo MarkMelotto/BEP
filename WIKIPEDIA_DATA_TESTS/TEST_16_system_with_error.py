@@ -5,6 +5,8 @@ from functions.WIKI_data import *
 from functions.functions import *
 import matplotlib.pyplot as plt
 
+"""this py file tests the whole system and its variables"""
+
 # system variables
 
 laser_power = [3]  # mWatt
@@ -15,8 +17,7 @@ laser_path_length = np.arange(0.1, .5, .1)  # m
 
 resistance_resistor = [1e3, 1e4, 46.5e3]  # Ohm
 
-relative_spectral_sensitivity = 0.95  # 980nm
-# relative_spectral_sensitivity = 1  # 940nm
+relative_spectral_sensitivity = 1  # 940nm
 
 # angle_laser_beam_on_detector = 0 # degree
 
@@ -32,7 +33,7 @@ diameter_laser_error = 0  # mm
 
 absorption_coefficient_water = WIKI_get_workable_absorption_coeff_water()
 
-wavelength = 980e-9
+wavelength = 940e-9
 
 temperature = 20  # C
 
@@ -96,9 +97,6 @@ for power in laser_power:
 
 # more calculations
 resistor_measurement = y.copy()
-# error_low = y.copy()
-# error_high = y.copy()
-# error_difference = y.copy()
 
 for i in range(len(resistance_resistor)):
     resistor_measurement[:, :, i] *= resistance_resistor[i]
@@ -138,10 +136,8 @@ voltage_measured *= 1e3  # to make it into mV
 error_low *= 1e3
 error_high *= 1e3
 error_difference *= 1e3 / 2
-# y *= 1e6
 
 # lets look at the difference
-
 differences = np.zeros(voltage_measured.shape)
 
 for i in range(len(voltage_measured[:, 0, 0])):
@@ -157,9 +153,6 @@ for i in range(len(laser_path_length)):
     for j in range(len(resistance_resistor)):
         axs[i, j].errorbar(humidity, voltage_measured[i, :, j], yerr=error_difference[i, :, j],
                            fmt='-', label='calculated potential + error')
-        # axs[i, j].plot(humidity, voltage_measured[i, :, j], label='calculated potential')
-        # axs[i, j].plot(humidity, error_low[i, :, j], label='min error')
-        # axs[i, j].plot(humidity, error_high[i, :, j], label='max error')
         axs[i, j].set_title(
             f"measured voltage, I = {intensity[0]:.2f} mW/cm2, path = {laser_path_length[i] * 100:.1f} cm\n"
             f"resistance = {resistance_resistor[j]:.0f} Ohm, Vr = {reverse_voltage} V, error diameter = {diameter_laser_error:.2f} mm\n"
@@ -171,4 +164,5 @@ for i in range(len(laser_path_length)):
 
 
 plt.tight_layout()
+plt.savefig("final_simulation")
 plt.show()
