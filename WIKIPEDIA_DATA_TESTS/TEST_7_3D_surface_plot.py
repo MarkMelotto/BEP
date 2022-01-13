@@ -55,4 +55,5 @@ plt.title(f'Intensity loss at T = {T}C, [%]')
 plt.ylabel('Path length (m)')
 plt.xlabel('Percentage Humidity')
 
+plt.savefig("intensity_loss")
 plt.show()
