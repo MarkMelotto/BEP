@@ -8,7 +8,8 @@ I am a bachelor student bla bla bla
 This project might look cluttered and messy, probably because it is, but I'll do my best to guide you through it.
 
 This readme file will have the same directory stuff as the project, so you can find stuff like that.
-Sources will be directly linked underneath the explanation.
+Sources will be directly linked underneath the explanation. If you come from my thesis you will need to go to BEP_jupyter.
+There you will find all the charts and data/functions.
 
 - calculations
   
