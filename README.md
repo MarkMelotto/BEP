@@ -3,13 +3,16 @@ Bachelor end project
 
 Hi,
 In this python project I keep my data and simulations.
-I am a bachelor student bla bla bla
+I am a bachelor student applied physics at the Technical University Delft.
+I have worked on designing a High Frequency Hygrometer.
+
+If you come from my thesis you will need to go to the folder **BEP_jupyter**.
+There you will find all the charts and data/functions.
 
 This project might look cluttered and messy, probably because it is, but I'll do my best to guide you through it.
 
 This readme file will have the same directory stuff as the project, so you can find stuff like that.
-Sources will be directly linked underneath the explanation. If you come from my thesis you will need to go to BEP_jupyter.
-There you will find all the charts and data/functions.
+Sources will be directly linked underneath the explanation. 
 
 - calculations
   
