@@ -3,12 +3,16 @@ Bachelor end project
 
 Hi,
 In this python project I keep my data and simulations.
-I am a bachelor student bla bla bla
+I am a bachelor student applied physics at the Technical University Delft.
+I have worked on designing a High Frequency Hygrometer.
+
+If you come from my thesis you will need to go to the folder **BEP_jupyter**.
+There you will find all the charts and data/functions.
 
 This project might look cluttered and messy, probably because it is, but I'll do my best to guide you through it.
 
 This readme file will have the same directory stuff as the project, so you can find stuff like that.
-Sources will be directly linked underneath the explanation.
+Sources will be directly linked underneath the explanation. 
 
 - calculations
   
@@ -193,7 +197,7 @@ Sources will be directly linked underneath the explanation.
 
 - WIKIPEDIA_DATA_TESTS
 
-all the tests here are based of of theoretical calculations, to basically see if the theory is measureable.
+  all the tests here are based of of theoretical calculations, to basically see if the theory is measureable.
 
   - TEST_1:
     looks at the difference of different wavelength light passing through the air.
@@ -254,3 +258,7 @@ all the tests here are based of of theoretical calculations, to basically see if
     This calculates in the same way TEST_14 does, but now it has errors in measurements added.
     So it theoretically calculates the error om resistor, diameter of the laser beam and error in path length.
     That is why it drops to 0 at the last data point.
+
+- measurements
+  
+  This is where you can find the data from my performed measurements.
