@@ -7,7 +7,7 @@ I am a bachelor student applied physics at the Technical University Delft.
 I have worked on designing a High Frequency Hygrometer.
 
 If you come from my thesis you will need to go to the folder **BEP_jupyter**.
-There you will find all the charts and data/functions.
+There you will find all the charts and data/functions. In **BEP_google_drive** you can find my log, design ideas and more documents I used in this project (it's all Dutch though).
 
 This project might look cluttered and messy, probably because it is, but I'll do my best to guide you through it.
 
