@@ -38,7 +38,7 @@ for k, v in real_air_density.items():
     R_sum_air_density.append(residual_air**2)
 
 for k, v in real_water_sat.items():
-    residual_hum = v - SSR_water_sat
+    residual_hum = v - mean_water_saturation
     R_sum_water_saturation.append(residual_hum**2)
 
 SST_air_dens = sum(R_sum_air_density)
